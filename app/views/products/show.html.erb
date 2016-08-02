@@ -15,5 +15,10 @@
   <%= @product.active %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
+<p>
+  <strong>Pictures:</strong>
+  <%= image_tag(@image.medium) %>
+</p>
+
+<%= link_to 'Edit', edit_product_path(@product) %>
 <%= link_to 'Back', products_path %>

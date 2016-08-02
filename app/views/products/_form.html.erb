@@ -1,10 +1,10 @@
-<%= form_for(product) do |f| %>
-  <% if product.errors.any? %>
+<%= form_for @product do |f| %>
+  <% if @product.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this @product from being saved:</h2>
 
       <ul>
-      <% product.errors.full_messages.each do |message| %>
+      <% @product.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -18,12 +18,18 @@
 
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= f.text_area :description %>
   </div>
 
   <div class="field">
     <%= f.label :active %>
     <%= f.check_box :active %>
+  </div>
+
+  <div class="field">
+    <%= f.fields_for :image_groups, @product.image_groups do |c| %>
+      <%= c.file_field :image %>
+    <% end %>
   </div>
 
   <div class="actions">

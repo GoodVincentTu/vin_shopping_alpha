@@ -1,0 +1,20 @@
+<table>
+	<thead>
+		<tr>
+			<th>Quantity</th>
+			<th>Product</th>
+			<th>Price</th>
+		</tr>
+	</thead>
+
+	<% @cart.items.each do |item| %>
+	  <tr>
+	  	<td><%= item.quantity %></td>
+	  	<td>
+	  		<%= image_tag(item.product.image_groups.first.image.thumb) %>
+	  		<%= link_to item.product.name, item.product %>
+	  	</td>
+			<td><strong>Todo - MetaItem model</strong></td>
+	  </tr>
+	<% end %>
+</table>

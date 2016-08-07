@@ -1,0 +1,12 @@
+<% if @order_form.has_errors? %>
+  <div>
+  	<h4>We have found some problem with your data. Please checkout again.</h4>
+  </div>
+
+  <% @order_form.user.errors.full_messages.each do |error| %>
+  	<p>
+  		<strong>User:</strong>
+  		<%= error %>
+  	</p>
+  <% end %>
+<% end %>

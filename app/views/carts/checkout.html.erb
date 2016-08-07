@@ -1,0 +1,58 @@
+<h1> Checkout </h1>
+
+<h2> The follwing products checking out: </h2>
+
+<!-- The list of cart items. -->
+<ul>
+	<% @cart.items.each do |item| %>
+	  <li>
+	  	<em><%= item.quantity %></em>
+	  	<%= item.product.name %>
+	  	<!-- item total price -->
+	  </li>
+	<% end %>
+</ul>
+
+<!-- The total price for cart. -->
+<p>
+	<strong>
+		Total price:
+		  Todo: For cart total price.
+	</strong>
+</p>
+
+<!-- The form for order. -->
+<%= form_for @order_form, url: orders_path do |f| %>
+================================================================================
+	<%= render 'orders/errors' %>
+================================================================================
+	<div class="field">
+		<%= f.fields_for :user, f.object.user do |u| %>
+			<div id="form-group">
+				<%= u.text_field :first_name, placeholder: "First Name" %>
+				<%= u.text_field :last_name,  placeholder: "Last Name" %>
+				<%= u.text_field :email,      placeholder: "Email" %>
+				<%= u.text_field :phone, placeholder: "Phone" %>
+			</div>
+		<% end %>
+		<span class="help-block">This will help you track your order more effectively.</span>
+
+		  <!-- Todo for Address model -->
+				<!-- Address form -->
+					<!-- country select -->
+					<!-- zip_code -->
+					<!-- state -->
+					<!-- city -->
+					<!-- address -->
+
+	</div>
+
+	<div class="payment">
+		<!-- The form for payment. (Paypal, credit card, allpay, alipay) -->
+	</div>
+
+	<div class="actions">
+		<%= f.submit 'Place order' %>
+	</div>
+<% end %>
+

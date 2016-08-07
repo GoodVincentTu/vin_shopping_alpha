@@ -452,6 +452,7 @@ DEPENDENCIES
   cancan
   carrierwave
   coffee-rails (~> 4.2)
+  countries
   country_select
   database_cleaner
   devise

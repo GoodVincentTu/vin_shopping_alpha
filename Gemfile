@@ -38,6 +38,8 @@ gem 'omniauth-google-oauth2'
 
 # shipment related gem
 gem 'country_select'
+# gem 'country_state_select'
+gem 'countries'
 
 # image upload
 gem 'carrierwave'

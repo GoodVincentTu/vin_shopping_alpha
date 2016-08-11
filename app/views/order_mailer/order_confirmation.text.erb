@@ -1,0 +1,9 @@
+Hello <%= @order.user.first_name %>,
+
+Thank you for placing an order. Here is a summary for order #<%= @order.id %>:
+
+<%- @order.order_items.each do |item| %>
+	* <%= item.quantity %> <%= item.product.name %> ( Todo - Total item total price )
+<%- end %>
+
+Total: (Todo - Total order price)

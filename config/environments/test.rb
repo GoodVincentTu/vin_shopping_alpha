@@ -39,4 +39,10 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Payment - Braintree setup
+  Braintree::Configuration.environment = :sandbox
+  Braintree::Configuration.merchant_id = "gjjrb47mpspnm6fd"
+  Braintree::Configuration.public_key = "sbxqhxgwj7pn84z5"
+  Braintree::Configuration.private_key = "ef0138d6ce62d828a4c28007ed0dceaf"
 end

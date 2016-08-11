@@ -5,7 +5,7 @@ class OrderForm
 	attr_writer :cart
 
 	def save
-		# set_password_for_user
+		set_password_for_user
 
 		if valid?
 			persist
@@ -32,13 +32,13 @@ class OrderForm
 		build_order_items
 	end
 
-	# def set_password_for_user
-	# 	user.password = Digest::SHA1.hexdigest(user.email + Time.now.to_s)[0..8]
-	# end
+	def set_password_for_user
+		user.password = Digest::SHA1.hexdigest(user.email + Time.now.to_s)[0..8]
+	end
 
 	def build_order_items
 		@cart.items.each do |item|
-			@order.order_itmes.create! product_id: item.product_id, quantity: item.quantity
+			@order.order_items.create! product_id: item.product_id, quantity: item.quantity
 		end
 	end
 end

@@ -28,7 +28,17 @@ Rails.application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000}
+  config.action_mailer.perform_deliveries = false
   config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   address: ENV["SMTP_ADDRESS"],
+  #   user_name: ENV["SMTP_USER"],
+  #   password: ENV["SMTP_PASSWORD"],
+  #   domain: "example.com.tw",
+  #   authentication: "plain",
+  #   enable_starttls_auto: true
+  # }
 
   config.action_mailer.perform_caching = false
 
@@ -52,4 +62,10 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Payment - Braintree setup
+  Braintree::Configuration.environment = :sandbox
+  Braintree::Configuration.merchant_id = "gjjrb47mpspnm6fd"
+  Braintree::Configuration.public_key = "sbxqhxgwj7pn84z5"
+  Braintree::Configuration.private_key = "ef0138d6ce62d828a4c28007ed0dceaf"
 end

@@ -28,7 +28,7 @@
 ================================================================================
 	<div class="field">
 		<%= f.fields_for :user, f.object.user do |u| %>
-			<div id="form-group">
+			<div class="form-group">
 				<%= u.text_field :first_name, placeholder: "First Name" %>
 				<%= u.text_field :last_name,  placeholder: "Last Name" %>
 				<%= u.text_field :email,      placeholder: "Email" %>
@@ -47,12 +47,20 @@
 
 	</div>
 
+================================================================================
 	<div class="payment">
 		<!-- The form for payment. (Paypal, credit card, allpay, alipay) -->
+		<div id="payment-form"></div>
 	</div>
+================================================================================
 
 	<div class="actions">
 		<%= f.submit 'Place order' %>
 	</div>
 <% end %>
 
+<script>
+braintree.setup("<%= @client_token %>", "dropin", {
+  container: "payment-form"
+});
+</script>

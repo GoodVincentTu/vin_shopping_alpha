@@ -1,6 +1,6 @@
 class ProductsController < InheritedResources::Base
 	before_action :set_product, only: [:show, :edit, :update, :destroy]
-	before_filter :initialize_cart
+	before_action :initialize_cart
 
 	def index
 		@products = Product.includes(:image_groups).all

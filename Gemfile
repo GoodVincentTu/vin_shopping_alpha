@@ -46,8 +46,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 
 # for amazon s3
-gem 'fog'
-gem 'figaro'
+# gem 'fog'
+# gem 'figaro'
 
 # payment
 gem 'braintree'
@@ -74,6 +74,8 @@ gem 'pry-byebug'
 
 group :test do
   gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'minitest-rails'
 end
 
 group :development, :test do

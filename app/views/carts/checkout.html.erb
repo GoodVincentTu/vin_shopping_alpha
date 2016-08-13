@@ -29,10 +29,10 @@
 	<div class="field">
 		<%= f.fields_for :user, f.object.user do |u| %>
 			<div class="form-group">
-				<%= u.text_field :first_name, placeholder: "First Name" %>
-				<%= u.text_field :last_name,  placeholder: "Last Name" %>
-				<%= u.text_field :email,      placeholder: "Email" %>
-				<%= u.text_field :phone, placeholder: "Phone" %>
+				<%= u.text_field :first_name, placeholder: "First Name" %><br>
+				<%= u.text_field :last_name,  placeholder: "Last Name" %><br>
+				<%= u.text_field :email,      placeholder: "Email" %><br>
+				<%= u.text_field :phone, placeholder: "Phone" %><br>
 			</div>
 		<% end %>
 		<span class="help-block">This will help you track your order more effectively.</span>

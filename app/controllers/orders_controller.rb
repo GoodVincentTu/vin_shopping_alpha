@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
 		if @order_form.save
 			notify_user
-			if charge_user
+			if false # charge_user
 				redirect_to root_path, notice: "Thank you for placing the order."
 			else
 				flash[:warning] = <<EOF
@@ -26,11 +26,19 @@ EOF
 
 	# for the action of the new_payment_order_path
 	def new_payment
-		
+		@order = Order.find params[:id]
+		@client_token = Braintree::ClientToken.generate
 	end
 
 	def pay
-		
+		@order = Order.find params[:id]
+		transaction = OrderTransaction.new @order, params[:payment_method_nonce]
+		transaction.execute
+		if transaction.ok?
+			redirect_to root_path, notice: "Thank you for placing the order."
+		else
+			render 'orders/new_payment'
+		end
 	end
 
 	private

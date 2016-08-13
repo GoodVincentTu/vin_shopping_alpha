@@ -1,0 +1,9 @@
+<h1> Enter Payment </h1>
+<%= render 'data', order: @order %>
+<%= form_tag pay_order_path do %>
+	<div class="payment">
+		<div id="payment-form"></div>
+	</div>
+	<%= submit_tag 'Pay' %>
+	<%= render 'braintree' %>
+<% end %>

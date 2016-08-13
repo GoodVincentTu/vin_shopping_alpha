@@ -1,0 +1,18 @@
+<!-- The list of order items. -->
+<ul>
+	<% order.order_items.each do |item| %>
+	  <li>
+	  	<em><%= item.quantity %></em>
+	  	<%= item.product.name %>
+	  	<!-- item total price -->
+	  </li>
+	<% end %>
+</ul>
+
+<!-- The total price for cart. -->
+<p>
+	<strong>
+		Total price:
+		  Todo: For cart total price.
+	</strong>
+</p>

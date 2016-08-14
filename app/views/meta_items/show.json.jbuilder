@@ -1,0 +1,1 @@
+json.partial! "meta_items/meta_item", meta_item: @meta_item

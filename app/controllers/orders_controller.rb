@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 
 		if @order_form.save
 			notify_user
-			if false # charge_user
+			if charge_user
 				redirect_to root_path, notice: "Thank you for placing the order."
 			else
 				flash[:warning] = <<EOF

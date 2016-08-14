@@ -1,0 +1,20 @@
+<h1><%= @meta_item.name %></h1>
+
+<ul>
+	<li>
+		<p>
+  		<strong>Sku:</strong>
+  		<%= @meta_item.sku %>
+		</p>
+	</li>
+	<li>
+		<p>
+  		<strong>Price:</strong>
+  		<%= @meta_item.price %>
+		</p>
+	</li>
+</ul>
+
+<%= render "products/table", products: @products %>
+
+<%= link_to 'Back', meta_items_path %>

@@ -1,12 +1,43 @@
 <div>
-	<p class="navbar">
-		<% if user_signed_in? %>
-		  Logged in as <%= current_user.first_name %>.
-			<%= link_to "Log out", destroy_user_session_path, method: :delete %>
-		<% else %>
-		  <%= link_to "Log in", new_user_session_path %>
-		<% end %>
-  </p>
 
-  <%= render 'cart' %>
+	<div class="root">
+		<%= link_to "Happy Compnay", root_path %>
+	</div>
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<div>
+	<ul>
+		<li><%= link_to "Products", products_path%></li>
+
+		<li class="dropdown">
+			<%= link_to "#", data: {toggle: "dropdown"} do %>
+			  Categories
+			  <span class="caret"></span>
+			<%- end %>
+			<ul class="dropdown-menu">
+				<% @meta_items.each do |m_item| %>
+					<li><%= link_to m_item.name, m_item %></li>
+				<% end %>
+			</ul>
+		</li>
+	</ul>
+</div>
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<div class="user right">
+	<% if user_signed_in? %>
+	  Logged in as <%= current_user.first_name %>.
+		<%= link_to "Log out", destroy_user_session_path, method: :delete %>
+	<% else %>
+	  <%= link_to "Log in", new_user_session_path %>
+	<% end %>
+</div>
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<%= render 'cart' %>
+
 </div>

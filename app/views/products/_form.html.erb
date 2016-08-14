@@ -27,9 +27,14 @@
   </div>
 
   <div class="field">
-    <%= f.fields_for :image_groups, @product.image_groups do |c| %>
+    <%= f.fields_for :image_groups, @product.image_groups.first do |c| %>
       <%= c.file_field :image %>
     <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :meta_item %>
+    <%= f.select :meta_item_id, MetaItem.all.map { |c| [c.name, c.id]} %>
   </div>
 
   <div class="actions">

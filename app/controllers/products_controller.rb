@@ -58,7 +58,7 @@ class ProductsController < InheritedResources::Base
     end
 
     def product_params
-      params.require(:product).permit(:name, :description, :active, image_groups_attributes: [:image])
+      params.require(:product).permit(:name, :description, :active, :meta_item_id, image_groups_attributes: [:image])
     end
 end
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meta_items
   root 'products#index'
   devise_for :users
   resources :products

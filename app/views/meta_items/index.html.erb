@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Meta Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Sku</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @meta_items.each do |meta_item| %>
+      <tr>
+        <td><%= meta_item.name %></td>
+        <td><%= meta_item.sku %></td>
+        <td><%= meta_item.price %></td>
+        <td><%= link_to 'Show', meta_item %></td>
+        <td><%= link_to 'Edit', edit_meta_item_path(meta_item) %></td>
+        <td><%= link_to 'Destroy', meta_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Meta Item', new_meta_item_path %>

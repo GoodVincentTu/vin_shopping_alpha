@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804015622) do
+ActiveRecord::Schema.define(version: 20160813063929) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "address"
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 20160804015622) do
     t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "meta_items", force: :cascade do |t|
+    t.string   "name"
+    t.string   "sku"
+    t.decimal  "price",      precision: 8, scale: 2, default: "0.0", null: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -54,9 +62,11 @@ ActiveRecord::Schema.define(version: 20160804015622) do
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
-    t.boolean  "active",      default: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.boolean  "active",       default: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "meta_item_id", default: 1
+    t.index ["meta_item_id"], name: "index_products_on_meta_item_id"
   end
 
   create_table "users", force: :cascade do |t|

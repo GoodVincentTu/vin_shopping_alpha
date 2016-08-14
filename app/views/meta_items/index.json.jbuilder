@@ -1,0 +1,1 @@
+json.array! @meta_items, partial: 'meta_items/meta_item', as: :meta_item

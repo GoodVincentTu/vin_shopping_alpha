@@ -4,4 +4,8 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<% if current_user && current_user.admin? %>
+  <p>
+    <%= link_to 'New Product', new_product_path %>
+  </p>
+<% end %>

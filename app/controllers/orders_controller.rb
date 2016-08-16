@@ -59,11 +59,11 @@ EOF
 
 	def notify_user
 		@order_form.user.send_reset_password_instructions
-		OrderMailer.order_confirmation(@order_form.order).deliver
+		OrderMailer.order_confirmation(@order_form.order).deliver_later
 	end
 
 	def notify_user_about_state
-		OrderMailer.state_changed(@order, @previous_state).deliver
+		OrderMailer.state_changed(@order, @previous_state).deliver_later
 	end
 
 	def order_params

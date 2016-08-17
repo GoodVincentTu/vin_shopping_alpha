@@ -16,8 +16,10 @@ class OrdersController < ApplicationController
 	end
 
 	def create
+		current_user.update(order_params[:user])
+		@customer = current_user
 		@order_form = OrderForm.new(
-			user: User.new(order_params[:user]),
+			user: @customer,
 			cart: @cart
 		)
 
@@ -58,12 +60,15 @@ EOF
 	private
 
 	def notify_user
-		@order_form.user.send_reset_password_instructions
-		OrderMailer.order_confirmation(@order_form.order).deliver_later
+		@order_form.user.delay_for(5.seconds).send_reset_password_instructions
+		OrderNotifyEmailWorker.perform_async @order_form.order.to_json
+		# @order_form.user.send_reset_password_instructions
+		# OrderMailer.order_confirmation(@order_form.order).deliver_later
 	end
 
 	def notify_user_about_state
-		OrderMailer.state_changed(@order, @previous_state).deliver_later
+		OrderNotifyEmailWorker.perform_async @order.to_json, @previous_state
+		# OrderMailer.state_changed(@order, @previous_state).deliver_later
 	end
 
 	def order_params

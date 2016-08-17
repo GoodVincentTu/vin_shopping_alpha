@@ -31,10 +31,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'binding_of_caller'
+gem 'sidekiq'
 
 # social media login
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
+# gem 'omniauth-facebook'
+# gem 'omniauth-google-oauth2'
 
 # shipment related gem
 gem 'country_select'
@@ -72,8 +73,6 @@ gem 'hirb'
 gem 'pry-rails'
 gem 'pry-byebug'
 
-gem 'sidekiq'
-
 group :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
@@ -94,6 +93,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'better_errors'
+  gem 'rails-erd'
   # gem 'bullet'
 end
 

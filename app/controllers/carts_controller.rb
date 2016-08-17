@@ -12,8 +12,12 @@ class CartsController < ApplicationController
 	end
 
 	def checkout
-		@order_form = OrderForm.new user: User.new
-		@client_token = Braintree::ClientToken.generate
+		if current_user
+			@order_form = OrderForm.new user: current_user
+			@client_token = Braintree::ClientToken.generate
+		else
+			redirect_to new_user_session_url
+		end
 	end
 
 	# def destroy

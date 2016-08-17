@@ -50,8 +50,15 @@
 ================================================================================
 	<div class="payment">
 		<!-- The form for payment. (Paypal, credit card, allpay, alipay) -->
-		<div id="payment-form"></div>
-		<div id="alipay"></div>
+		Choose your payment method:
+		<div id="braintree">
+			Braintree
+			<div id="payment-form" style="display: none"></div>
+		</div>
+		<div id="alipay" >
+			Alipay
+			<div id="ali-form" style="display: none"></div>
+		</div>
 	</div>
 ================================================================================
 
@@ -61,7 +68,16 @@
 <% end %>
 
 <script>
-braintree.setup("<%= @client_token %>", "dropin", {
-  container: "payment-form"
-});
+	$(function(){
+		$(".payment #braintree").on('click', function() {
+			$("#payment-form").toggle(
+				function(){
+					$("#braintree #payment-form").append("<%= j render 'carts/payment/braintree' %>");
+				},
+				function(){
+					$('#braintree #payment-form').children().remove();
+				}
+			);
+		});
+	});
 </script>

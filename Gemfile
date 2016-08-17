@@ -52,6 +52,7 @@ gem 'mini_magick'
 
 # payment
 gem 'braintree'
+gem 'stripe'
 
 # pagination
 gem 'kaminari'

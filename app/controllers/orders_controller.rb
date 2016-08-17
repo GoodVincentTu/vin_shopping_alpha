@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
 
 		if @order_form.save
 			notify_user
-			if charge_user
+			if charge_user || stripe_payment
 				redirect_to root_path, notice: "Thank you for placing the order."
 			else
 				flash[:warning] = <<EOF
@@ -85,5 +85,15 @@ EOF
 
 	def state_order_params
 		params.require(:order).permit(:state)
+	end
+
+	def stripe_payment
+		stripe_transaction = StripeTransaction.new @order, stripe_params["stripeEmail"], stripe_params["stripeToken"]
+		stripe_transaction.execute
+		stripe_transaction.ok?
+	end
+
+	def stripe_params
+		params.permit :stripeEmail, :stripeToken
 	end
 end

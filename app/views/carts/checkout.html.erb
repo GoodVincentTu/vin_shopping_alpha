@@ -56,8 +56,9 @@
 			<div id="payment-form" style="display: none"></div>
 		</div>
 		<div id="alipay" >
-			Alipay
-			<div id="ali-form" style="display: none"></div>
+			<div class="action">
+				<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="<%= Rails.configuration.stripe[:publishable_key] %>"  data-name="Happy Company" data-label="Pay with Card or Alipay" data-locale="auto" data-alipay="true"></script>
+			</div>
 		</div>
 	</div>
 ================================================================================

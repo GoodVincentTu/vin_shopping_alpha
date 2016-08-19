@@ -8,7 +8,7 @@
 	  <li>
 	  	<em><%= item.quantity %></em>
 	  	<%= item.product.name %>
-	  	<!-- item total price -->
+	  	<%= number_to_currency item.total_price  %>
 	  </li>
 	<% end %>
 </ul>
@@ -17,7 +17,7 @@
 <p>
 	<strong>
 		Total price:
-		  Todo: For cart total price.
+		  <%= number_to_currency @cart.total_price %>
 	</strong>
 </p>
 
@@ -33,18 +33,16 @@
 				<%= u.text_field :last_name,  placeholder: "Last Name" %><br>
 				<%= u.text_field :email,      placeholder: "Email" %><br>
 				<%= u.text_field :phone, placeholder: "Phone" %><br>
+				<span class="help-block">This will help you track your order more effectively.</span>
+			</div>
+			<div class="form-group">
+				<%= u.text_field :address, placeholder: "Location(except from the country, state and city)" %><br>
+				<%= u.text_field :zip_code, placeholder: "Zipcode" %><br>
+				<%= u.text_field :city, placeholder: "City" %><br>
+				<%= u.text_field :state, placeholder: "State" %><br>
+				<%= u.country_select :country, { priority_countries: [ "TW", "US", "JP", "GB" ] } %>
 			</div>
 		<% end %>
-		<span class="help-block">This will help you track your order more effectively.</span>
-
-		  <!-- Todo for Address model -->
-				<!-- Address form -->
-					<!-- country select -->
-					<!-- zip_code -->
-					<!-- state -->
-					<!-- city -->
-					<!-- address -->
-
 	</div>
 
 ================================================================================
@@ -53,11 +51,11 @@
 		Choose your payment method:
 		<div id="braintree">
 			Braintree
-			<div id="payment-form" style="display: none"></div>
 		</div>
+		<div id="payment-form" style="display: none"></div><br>
 		<div id="alipay" >
 			<div class="action">
-				<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="<%= Rails.configuration.stripe[:publishable_key] %>"  data-name="Happy Company" data-label="Pay with Card or Alipay" data-locale="auto" data-alipay="true"></script>
+				<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-amount="<%= @cart.total_price * 100 %>" data-description="HappyCompany products order" data-key="<%= Rails.configuration.stripe[:publishable_key] %>"  data-name="Happy Company" data-label="Pay with Card or Alipay" data-locale="auto" data-alipay="true"></script>
 			</div>
 		</div>
 	</div>
@@ -73,10 +71,7 @@
 		$(".payment #braintree").on('click', function() {
 			$("#payment-form").toggle(
 				function(){
-					$("#braintree #payment-form").append("<%= j render 'carts/payment/braintree' %>");
-				},
-				function(){
-					$('#braintree #payment-form').children().remove();
+					$("#payment-form").html("<%= j render 'braintree' %>");
 				}
 			);
 		});

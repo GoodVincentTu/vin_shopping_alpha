@@ -17,7 +17,7 @@ class CartTest < MiniTest::Test
 	end
 
 	def test_retrieves_products
-		product = Product.create! name: "Levis Blue", description: "Nice style and cut.", active: false
+		product = Product.create! name: "Levis Blue", description: "Nice style and cut.", active: false, price: 1000
 
 		cart = Cart.new
 		cart.add_item product.id

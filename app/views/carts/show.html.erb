@@ -16,10 +16,24 @@
 	  		<%= image_tag(item.product.image_groups.first.image.thumb) %>
 	  		<%= link_to item.product.name, item.product %>
 	  	</td>
-			<td><strong>Todo - MetaItem model</strong></td>
+			<td><%= item.total_price %></td>
 	  </tr>
 	<% end %>
+
+	<tfoot>
+		<tr>
+			<td colspan="3">
+				<strong>
+					Total Price:
+					  <%= number_to_currency @cart.total_price %>
+				</strong>
+			</th>
+		</tr>
+	</tfoot>
 </table>
+
+<p>Total price of your cart:</p>
+<p><%= number_to_currency @cart.total_price %></p>
 
 <p>
 	<%= link_to "Checkout", checkout_cart_path %>

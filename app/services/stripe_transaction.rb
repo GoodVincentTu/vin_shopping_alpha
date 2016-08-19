@@ -6,13 +6,14 @@ class StripeTransaction
 	end
 
 	def execute
-		customer = Stripe::Customer.create email: @email,
-		 																	 card:  @token
+		customer = Stripe::Customer.create email: email, card: token
+		customer.sources.create(:source => token)
 
 		@result = Stripe::Charge.create(
-			amount: 2000,
+			customer: customer.id,
+			amount: @order.total_price.to_i * 100,
 			currency: 'usd',
-			source: @token,
+			# source: @token,
 			description: 'The products of your order!'
 		)
 	end
@@ -20,4 +21,8 @@ class StripeTransaction
 	def ok?
 		@result.paid?
 	end
+
+	private
+
+	attr_reader :email, :order, :token
 end

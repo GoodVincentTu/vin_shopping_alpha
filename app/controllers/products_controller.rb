@@ -26,16 +26,17 @@ class ProductsController < InheritedResources::Base
 			if @product.save
 				format.html { redirect_to @product, notice: "Your product was successfully created!" }
 				format.json { render :show, status: :created, location: @product }
-			end
+			else
 			  format.html { render :new }
 			  format.json { render json: @product.errors, status: :unprocessable_entity }
+			end
 		end
 	end
 
 	def update
 		respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to @product, notice: 'Your product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit }
@@ -59,7 +60,7 @@ class ProductsController < InheritedResources::Base
     end
 
     def product_params
-      params.require(:product).permit(:name, :description, :active, :meta_item_id, image_groups_attributes: [:image])
+      params.require(:product).permit(:name, :description, :active, :price, :meta_item_id, image_groups_attributes: [:image])
     end
 end
 

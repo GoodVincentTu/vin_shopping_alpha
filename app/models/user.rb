@@ -4,13 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates_presence_of :email
+  validates_presence_of :address, :country, :state, :city, :zip_code, :phone
 
-  # def full_address
-  # <<EOF
-##{address}
-##{postal_code} #{city}
-##{state}
-##{country}
-  # end
+  def full_address
+  <<EOF
+#{address}
+#{zip_code} #{city}
+#{state}
+#{country}
+EOF
+  end
 end

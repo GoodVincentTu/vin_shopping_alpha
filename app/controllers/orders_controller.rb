@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
 			notify_user_about_state
 			redirect_to orders_path, notice: "Order was updated."
 		else
+			redirect_to orders_path, alert: "The order state was not successfully updated."
 		end
 	end
 
@@ -25,6 +26,7 @@ class OrdersController < ApplicationController
 
 		if @order_form.save
 			notify_user
+			@order = @order_form.order
 			if charge_user || stripe_payment
 				redirect_to root_path, notice: "Thank you for placing the order."
 			else
@@ -60,7 +62,7 @@ EOF
 	private
 
 	def notify_user
-		@order_form.user.delay_for(5.seconds).send_reset_password_instructions
+		# @order_form.user.delay_for(5.seconds).send_reset_password_instructions
 		OrderNotifyEmailWorker.perform_async @order_form.order.to_json
 		# @order_form.user.send_reset_password_instructions
 		# OrderMailer.order_confirmation(@order_form.order).deliver_later
@@ -73,7 +75,7 @@ EOF
 
 	def order_params
 		params.require(:order_form).permit(
-			user: [ :first_name, :last_name, :email, :phone ]
+			user: [ :first_name, :last_name, :email, :phone, :address, :country, :state, :city, :zip_code ]
 		)
 	end
 

@@ -11,38 +11,50 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+  <div class="row">
+    <div class=".input-field">
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
+  <div class="row">
+    <div class=".input-field">
+      <%= f.label :description %>
+      <%= f.text_area :description, :class => "materialize-textarea" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :active %>
-    <%= f.check_box :active %>
+  <div class="row">
+    <div class=".input-field">
+      <%= f.check_box :active, :id => "filled-in", :class => "filled-in" %>
+      <%= f.label :active, :for => "filled-in" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :price %>
-    <%= f.text_field :price %>
+  <div class="row">
+    <div class=".input-field">
+      <%= f.label :price %>
+      <%= f.text_field :price %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.fields_for :image_groups, @product.image_groups.first do |c| %>
-      <%= c.file_field :image %>
-    <% end %>
+  <div class="row">
+    <div class=".input-field">
+      <%= f.fields_for :image_groups, @product.image_groups.first do |c| %>
+        <%= c.file_field :image %>
+      <% end %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :meta_item %>
-    <%= f.select :meta_item_id, MetaItem.all.map { |c| [c.name, c.id]} %>
+  <div class="row">
+    <div class=".input-field col s12">
+      <%= f.label :meta_item %>
+      <%= f.select :meta_item_id, MetaItem.all.map { |c| [c.name, c.id]},{}, :class => "browser-default" %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Create Product',:class => "btn waves-effect waves-light" %>
   </div>
 <% end %>

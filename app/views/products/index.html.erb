@@ -1,11 +1,5 @@
-<h1>Products</h1>
-
 <%= render "products/table", products: @products %>
 
-<br>
-
 <% if current_user && current_user.admin? %>
-  <p>
-    <%= link_to 'New Product', new_product_path %>
-  </p>
+   <%= link_to 'New Product', new_product_path, :class => "waves-effect waves-light btn" %>
 <% end %>

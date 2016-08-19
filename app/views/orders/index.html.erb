@@ -1,4 +1,4 @@
-<h1>All orders</h1>
+<h3>All orders</h3>
 
 <table class="table">
 	<thead>
@@ -54,7 +54,9 @@
 
 			<td>
 				<%= form_for order do |f| %>
-					<%= f.select :state, Order::STATES %>
+					<div class=".input-field">
+						<%= f.select :state, Order::STATES, {}, :class => "browser-default" %>
+					</div>
 				<% end %>
 			</td>
 		</tr>

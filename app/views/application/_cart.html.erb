@@ -1,9 +1,7 @@
-<div class="cart">
-	<% if @cart %>
-		<% if @cart.empty? %>
-			<p>Your cart is empty.</p>
-		<% else %>
-			<%= link_to "You have #{pluralize @cart.count, "items"}.", cart_path %>
-		<% end %>
+<% if @cart %>
+	<% if @cart.empty? %>
+		<li>Empty Cart</li>
+	<% else %>
+		<%= link_to "You have #{pluralize @cart.count, "items"}.", cart_path %>
 	<% end %>
-</div>
+<% end %>

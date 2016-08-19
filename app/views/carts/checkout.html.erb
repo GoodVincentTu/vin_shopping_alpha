@@ -1,6 +1,6 @@
-<h1> Checkout </h1>
+<h3> Checkout </h3>
 
-<h2> The follwing products checking out: </h2>
+<h4> The follwing products checking out: </h4>
 
 <!-- The list of cart items. -->
 <ul>
@@ -21,48 +21,73 @@
 	</strong>
 </p>
 
+<div class="divider"></div>
+
 <!-- The form for order. -->
 <%= form_for @order_form, url: orders_path do |f| %>
-================================================================================
+
 	<%= render 'orders/errors' %>
-================================================================================
+
 	<div class="field">
 		<%= f.fields_for :user, f.object.user do |u| %>
 			<div class="form-group">
+				<p>First Name</p>
 				<%= u.text_field :first_name, placeholder: "First Name" %><br>
+				<p>Last Name</p>
 				<%= u.text_field :last_name,  placeholder: "Last Name" %><br>
+				<p>Email</p>
 				<%= u.text_field :email,      placeholder: "Email" %><br>
+				<p>Phone</p>
 				<%= u.text_field :phone, placeholder: "Phone" %><br>
 				<span class="help-block">This will help you track your order more effectively.</span>
 			</div>
-			<div class="form-group">
+			<div class="form-group .input-field">
+				<p>Address</p>
 				<%= u.text_field :address, placeholder: "Location(except from the country, state and city)" %><br>
+
+				<p>Zip Code/Postal Code</p>
 				<%= u.text_field :zip_code, placeholder: "Zipcode" %><br>
+
+				<p>City</p>
 				<%= u.text_field :city, placeholder: "City" %><br>
+
+				<p>State</p>
 				<%= u.text_field :state, placeholder: "State" %><br>
-				<%= u.country_select :country, { priority_countries: [ "TW", "US", "JP", "GB" ] } %>
+
+				<div class=".input-field">
+					<p>Counrty</p>
+					<%= u.country_select :country, { priority_countries: [ "TW", "US", "JP", "GB" ] }, :class => "browser-default" %>
+				</div>
 			</div>
 		<% end %>
 	</div>
 
-================================================================================
+	<br>
+	<div class="divider"></div>
+
 	<div class="payment">
 		<!-- The form for payment. (Paypal, credit card, allpay, alipay) -->
-		Choose your payment method:
+		<h4>Choose your payment method:</h4>
+
 		<div id="braintree">
-			Braintree
+			<a class="waves-effect waves-light btn">Braintree</a>
 		</div>
+		<br>
 		<div id="payment-form" style="display: none"></div><br>
+
 		<div id="alipay" >
 			<div class="action">
 				<script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-amount="<%= @cart.total_price * 100 %>" data-description="HappyCompany products order" data-key="<%= Rails.configuration.stripe[:publishable_key] %>"  data-name="Happy Company" data-label="Pay with Card or Alipay" data-locale="auto" data-alipay="true"></script>
 			</div>
 		</div>
 	</div>
-================================================================================
+
+	<br>
+	<div class="divider"></div>
+	<br>
 
 	<div class="actions">
-		<%= f.submit 'Place order' %>
+		<%= f.submit 'Place order',:class => "btn waves-effect waves-light" %>
 	</div>
 <% end %>
 

@@ -25,3 +25,9 @@ public/uploads
 
 # Ignore the secret information
 config/secrets.yml
+config/database.yml
+config/initializers/devise.rb
+/config/deploy/production.rb
+/config/deploy/staging.rb
+/config/deploy.rb
+db/seeds.rb

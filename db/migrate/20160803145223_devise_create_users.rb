@@ -32,7 +32,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
 
       t.string :first_name
       t.string :last_name
-      t.references :address, foreign_key: true
+      # t.references :address, foreign_key: true
       t.string :phone
 
       t.timestamps null: false

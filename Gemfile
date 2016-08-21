@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -97,6 +97,9 @@ group :development do
   gem 'rails-erd'
   gem 'sqlite3'
   # gem 'bullet'
+  gem "capistrano", "~> 3.6"
+  gem 'capistrano-rvm'
+  gem 'capistrano-rails'
 end
 
 group :production do
